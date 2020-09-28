@@ -28,7 +28,7 @@ interface SingnInCredentials {
 
 interface AuthContextData {
   user: User;
-  loadind: boolean;
+  loading: boolean;
   signIn(credentials: SingnInCredentials): Promise<void>;
   signOut(): void;
   updateUser(user: User): Promise<void>;
@@ -38,7 +38,7 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>({} as AuthState);
-  const [loadind, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
       async function loadStorageData(): Promise<void> {
@@ -93,7 +93,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, [setData, data.token]);
 
   return (
-      <AuthContext.Provider value={{ user: data.user, loadind, signIn, signOut, updateUser }}>
+      <AuthContext.Provider value={{ user: data.user, loading, signIn, signOut, updateUser }}>
           {children}
       </AuthContext.Provider>
   );
