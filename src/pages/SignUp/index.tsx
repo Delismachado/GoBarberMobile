@@ -5,6 +5,7 @@ import {FormHandles} from '@unform/core';
 import {Image, ScrollView, TextInput, Alert} from 'react-native';
 
 import * as Yup from 'yup';
+import api from '../../services/api';
 import Icon from 'react-native-vector-icons/Feather';
 
 import getValidationErrors from '../../utils/getValidationErrors';
@@ -49,7 +50,7 @@ const SignUp: React.FC = () => {
             abortEarly: false,
         });
 
-        //await api.post('/users', data);
+        await api.post('/users', data);
 
         Alert.alert('Cadastro realizado com sucesso!!');
 

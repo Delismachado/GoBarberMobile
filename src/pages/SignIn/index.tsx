@@ -4,6 +4,7 @@ import {Image, ScrollView, TextInput, Alert} from 'react-native';
 import {Form} from '@unform/mobile';
 import {FormHandles} from '@unform/core';
 import * as Yup from 'yup';
+import {useAuth} from '../../hooks/auth';
 import Icon from 'react-native-vector-icons/Feather';
 
 import getValidationErrors from '../../utils/getValidationErrors';
@@ -31,7 +32,7 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
   const navigation = useNavigation();
-
+  const {signIn} = useAuth();
 
   const handleSignIn = useCallback(
     async (data: SignInFormData) => {
@@ -48,10 +49,10 @@ const SignIn: React.FC = () => {
                 abortEarly: false,
             });
 
-            // await signIn({
-            //     email: data.email,
-            //     password: data.password,
-            // });
+            await signIn({
+                email: data.email,
+                password: data.password,
+            });
 
         } catch (err) {
             if (err instanceof Yup.ValidationError) {
@@ -68,7 +69,7 @@ const SignIn: React.FC = () => {
         }
 
 
-    }, []);
+    }, [signIn]);
 
   return (
     <>
