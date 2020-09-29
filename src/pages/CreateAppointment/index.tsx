@@ -112,7 +112,7 @@ const CreateAppointment: React.FC = () => {
                 provider_id: selectedProvider,
                 date,
             })
-            navigate('appointmentCreated', { date:  date.getTime()})
+            navigate('AppointmentCreated', { date:  date.getTime()})
         } catch (err) {
             Alert.alert(
                 'Erro ao criar agendamento',
@@ -187,7 +187,7 @@ const CreateAppointment: React.FC = () => {
                           mode="date"
                           display="calendar"
                           onChange={handleDateChanged}
-                          textColor="#f4ede8"
+                          //textColor="#f4ede8"
                           value={selectedDate}
                         />
                     )}
